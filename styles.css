@@ -1,0 +1,126 @@
+*{
+    padding: 0;
+    margin: 0;
+    }
+    
+    body{
+    background-color: #1a1b25;
+    }
+    
+    header{
+    margin: 0;
+    padding: 0;
+    height: 45px;
+    width: 100%;
+    position: relative;
+    }
+    
+    .topnav{
+    background-color: #1a1b25;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    }
+
+
+    .topnav a:hover {
+    background-color: #8ee3ef;
+    color: black;
+    padding: 10px 15px;
+    }
+    
+    header nav ul{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5%;
+    list-style: none;
+    }
+    
+    header nav ul li{
+    padding-left: 20px;
+    }
+
+    .name{
+        color: #c33c54;
+    }
+    
+    header a{
+    text-decoration: none;
+    color: #8ee3ef;
+    padding: 10px 15px;
+    display: inline-block;
+    }
+
+    a{
+        font-family: 'Verdana', sans-serif;
+    }
+    p{
+        font-family: 'Verdana', sans-serif;
+    }
+    ul{
+        font-family: 'Verdana', sans-serif;
+    }
+    .footer{
+        color: #ffffff;
+    }
+    
+
+
+    section{
+    height: 100vh;
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 2%;
+    }
+    
+    .Container img{
+    height: 300px;
+    border-radius: 50%;
+    }
+    
+    h2{
+    text-align: center;
+    margin-top: 2%;
+    font-size: 3em;
+    font-family: 'Verdana', sans-serif;
+    }
+    .Container p, ul{
+    margin-top: 2%;
+    font-size: 1.5rem;
+    text-align: center;
+    }
+    
+    footer {
+    line-height: 40px;
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    }
+
+    #intro {
+    background-color: #ffffff;
+    background-repeat: round;
+    color: #1a1b25;
+    justify-content: center;
+    }
+    #projects{
+    background-color: #ffffff;
+    color: #1a1b25;
+    }
+    #about{
+    background-color: #1a1b25;
+    color: white;
+    }
+    #contact{
+    background-color: #1a1b25;
+    color: white;
+    height: 50vh;
+    }
+    
+    #about a, #contact a, #projects a{
+    color: #8ee3ef;
+    }
