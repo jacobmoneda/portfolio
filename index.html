@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My HTML Template</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-</head>
+    <script src="https://kit.fontawesome.com/a518dd11b5.js" crossorigin="anonymous"></script></head>
 <header>
     <div class="topnav">
     <nav>
@@ -22,26 +21,35 @@
 <body>
     <main>
         <section id="intro">
-            <h2>Hello, I'm <span class="name"></div>Jacob Moneda</span>. Check out the cool things I've been working on.</h2>
+            <img src="images/jacob.jpeg" alt="photo"></img>
+            <h2>Hello, I'm <span class="name">Jacob Moneda</span>. Check out the cool things I've been working on.</h2>
         </section>
         <section id="about">
             <h2>About Me</h2>
-            <p>I am a final year student at Auckland University of Technology, pursuing a Bachelor of Computer and Information Sciences. I'm doing a double major in Data Science and Software Development.</p>
+            <p>I am a final year student at Auckland University of Technology, pursuing a Bachelor of Computer and Information Sciences. I'm doing a double major in <span class="name">Data Science</span> and <span class="name">Software Development</span>.</p>
         </section>
         <section id="projects">
             <h2>Projects</h2>
-            <ul>
-                <li><a href="https://github.com/finleyparker/hustlemuscle">HustleMuscle</a></li>
-                <li><a href="https://github.com/jacobmoneda/BookingSoftware">AUT Room Booking System</a></li>
-            </ul>
+            <div class="projects-container">
+                <div class="project-card">
+                    <h3 class="project-title">HustleMuscle</h3>
+                    <p class="project-description">A fitness application for tracking workouts and progress.</p>
+                    <a href="https://github.com/finleyparker/hustlemuscle" class="project-link">View on GitHub <i class="fa-brands fa-github"></i></a>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title">AUT Room Booking System</h3>
+                    <p class="project-description">A room booking system for Auckland University of Technology.</p>
+                    <a href="https://github.com/jacobmoneda/BookingSoftware" class="project-link">View on GitHub <i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
         </section>
         <section id="contact">
             <h2>Contact Me</h2>
             <p>You can reach me at</p>
             <ul>
-                <li><a href="#"></a><i class="fa-solid fa-envelope"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/jacob-moneda-236028252/"><i class="fab fa-linkedin-in icon"></i></a></li>
-                <li>GitHub: <a href="https://github.com/jacobmoneda">jacobmoneda</a></li>
+                <li class ="icon1"><i class="fa-regular fa-envelope"></i> <u class="email">jacob.moneda@protonmail.com</u></li>
+                <li><a href="https://www.linkedin.com/in/jacob-moneda-236028252/"><i class="fab fa-linkedin-in icon"></i> LinkedIn</a></li>
+                <li><a href="https://github.com/jacobmoneda"><i class="fa-brands fa-github"></i> GitHub</a></li>
                 </ul>
         </section>
 
