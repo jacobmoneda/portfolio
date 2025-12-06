@@ -45,6 +45,10 @@
         color: #c33c54;
     }
     
+   .icon1{
+    color:#8ee3ef;
+   } 
+    
     header a{
     text-decoration: none;
     color: #8ee3ef;
@@ -60,6 +64,7 @@
     }
     ul{
         font-family: 'Verdana', sans-serif;
+        list-style-type: none;
     }
     .footer{
         color: #ffffff;
@@ -114,6 +119,14 @@
     #about{
     background-color: #1a1b25;
     color: white;
+    }
+    
+    #about p{
+    margin-top: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 800px;
+    line-height: 1.6;
     }
     #contact{
     background-color: #1a1b25;
