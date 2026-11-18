@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-NZ">
+<head><script>const actualMatchMedia=window.matchMedia.bind(window); window.matchMedia=query=>query==='(prefers-reduced-motion: reduce)'?Object.assign(new EventTarget(),{matches:true,media:query}):actualMatchMedia(query);</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Selected projects by Jacob Moneda in software development, robotics, computer vision, AI and spatial data science.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#171816">
+  <meta property="og:title" content="Jacob Moneda — Selected projects">
+  <meta property="og:description" content="Software, robotics, AI and data science. Projects and the engineering behind them.">
+  <meta property="og:type" content="website">
+  <title>Jacob Moneda | Software, Robotics and AI</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="qa-reduced.css">
+  <script src="script.js?v=phase06-1" defer></script>
+</head>
+<body class="homepage">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="wordmark" href="#intro" aria-label="Jacob Moneda, back to introduction">Jacob Moneda</a>
+    <nav aria-label="Main navigation"><a href="#projects" data-nav="projects" aria-current="location">Projects</a><a href="#about" data-nav="about">About</a><a href="#contact" data-nav="contact">Contact</a></nav>
+  </div></header>
+  <main id="main">
+    <section class="intro wrap" id="intro" aria-labelledby="identity">
+      <h1 class="sr-only" id="identity">Jacob Moneda</h1>
+      <p class="intro-copy">Software, robotics and data</p>
+    </section>
+    <section id="projects" aria-labelledby="work-title">
+      <h2 class="sr-only" id="work-title">Selected projects</h2>
+      <article class="featured-project wrap" id="project-thermal-inspection" aria-labelledby="thermal-title">
+        <div class="featured-copy">
+          <p class="project-context">Ongoing research · AUT and Spark NZ</p>
+          <h3 id="thermal-title">Robotic inspection and thermal analytics</h3>
+          <p class="featured-description">I develop arm positioning and thermal analysis tools, and work on robot localization.</p>
+          <a class="button" href="projects/thermal-inspection.html">View project <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="media-carousel featured-gallery" data-carousel role="region" aria-label="Robotic inspection media">
+          <div class="carousel-slides" id="thermal-slides">
+            <figure class="carousel-slide" data-slide data-slide-name="Inspection setup">
+              <div class="carousel-frame"><img src="assets/images/thermal-setup-960.webp" srcset="assets/images/thermal-setup-480.webp 480w, assets/images/thermal-setup-960.webp 960w, assets/images/thermal-setup-1440.webp 1440w" sizes="(max-width: 720px) calc(100vw - 48px), 480px" width="960" height="1280" fetchpriority="high" decoding="async" draggable="false" alt="Unitree Go2 with an articulated arm holding a thermal camera in the lab"></div>
+              <figcaption><span>Arm and thermal camera</span><a href="assets/images/thermal-setup-1440.webp">View photo <span aria-hidden="true">↗</span></a></figcaption>
+            </figure>
+            <figure class="carousel-slide" data-slide data-slide-name="Thermal image analysis">
+              <div class="carousel-frame"><img src="assets/images/thermal-analysis.webp" width="816" height="630" loading="lazy" decoding="async" draggable="false" alt="Thermal processing app with temperature statistics, an RGB image and its thermal heatmap"></div>
+              <figcaption><span>Thermal image analysis</span><a href="https://thermal-image-processing.streamlit.app/">Open app <span aria-hidden="true">↗</span></a></figcaption>
+            </figure>
+          </div>
+          <div class="carousel-controls" data-carousel-controls hidden><button type="button" data-previous aria-label="Previous media" aria-controls="thermal-slides"><span aria-hidden="true">←</span></button><p data-position aria-live="polite" aria-atomic="true">1 / 2</p><button type="button" data-next aria-label="Next media" aria-controls="thermal-slides"><span aria-hidden="true">→</span></button></div>
+        </div>
+      </article>
+      <section class="selected-list light-section" aria-labelledby="other-work-title"><div class="wrap">
+        <h2 id="other-work-title">Other projects</h2>
+        <article class="selected-project" id="project-robot-dog"><div><h3><a href="projects/robot-dog.html">Vision-guided robot control <span aria-hidden="true">↗</span></a></h3><p>Vision models, object detection and command handling for a Unitree Go2.</p></div><a class="project-thumbnail" href="projects/robot-dog.html" aria-label="View the robot control project"><img src="assets/images/go2-demo-640.webp" srcset="assets/images/go2-demo-640.webp 640w, assets/images/go2-demo-1280.webp 1280w" sizes="(max-width: 540px) calc(100vw - 48px), (max-width: 850px) 45vw, 540px" width="640" height="375" loading="lazy" decoding="async" alt="Go2 demonstration with the robot and command interface"></a></article>
+        <article class="selected-project text-project" id="project-rag"><div><h3><a href="projects/citation-rag.html">RAG with source citations <span aria-hidden="true">↗</span></a></h3><p>Retrieval from lecture slides with references to the course, lecture and slide.</p></div></article>
+        <article class="selected-project text-project" id="project-spatial-model"><div><h3><a href="projects/auckland-land-cost.html">Auckland land values <span aria-hidden="true">↗</span></a></h3><p>Spatial features and Gaussian Process Regression for modelling land cost.</p></div></article>
+        <article class="selected-project" id="project-hustlemuscle"><div><h3><a href="projects/hustlemuscle.html">HustleMuscle <span aria-hidden="true">↗</span></a></h3><p>A team-built fitness app for workout logging and progress tracking.</p></div><a class="project-thumbnail phone-thumbnail" href="projects/hustlemuscle.html" aria-label="View the HustleMuscle project"><img src="assets/images/hustlemuscle-home.png" width="458" height="959" loading="lazy" decoding="async" alt="Home Screen in HustleMuscle"><img src="assets/images/hustlemuscle-workout.png" width="463" height="963" loading="lazy" decoding="async" alt="HustleMuscle workout logging screen"></a></article>
+        <article class="selected-project text-project" id="project-text-classification"><div><h3><a href="projects/text-classification.html">Text classification <span aria-hidden="true">↗</span></a></h3><p>A comparison of three machine learning algorithms.</p></div></article>
+      </div></section>
+    </section>
+    <section class="about wrap" id="about" aria-labelledby="about-title"><h2 id="about-title">About</h2><div class="about-copy"><p>My background at AUT is in data science and software development. I’m currently working on robot control and thermal imaging.</p><p>Outside work, I run, hike, lift weights and play guitar.</p></div></section>
+    <section class="contact light-section" id="contact" aria-labelledby="contact-title"><div class="wrap contact-layout"><h2 id="contact-title">Get in touch</h2><div><a class="text-link contact-email" href="mailto:jacob.moneda@protonmail.com">jacob.moneda@protonmail.com <span aria-hidden="true">↗</span></a><div class="contact-links"><a class="text-link" href="https://github.com/jacobmoneda">GitHub <span aria-hidden="true">↗</span></a><a class="text-link" href="https://www.linkedin.com/in/jacob-moneda-236028252/">LinkedIn <span aria-hidden="true">↗</span></a></div></div></div></section>
+  </main>
+  <footer class="site-footer wrap"><p>© <span data-year>2026</span> Jacob Moneda</p><a href="#intro">Back to top <span aria-hidden="true">↑</span></a></footer>
+<aside style="position:fixed;bottom:8px;left:8px;z-index:999;background:white;color:black;padding:8px"><button id="qa-rapid">Run rapid reversal</button><button id="qa-keyboard">Run keyboard interruption</button><output id="qa-result" style="display:none"></output></aside><script src="qa-motion.js" defer></script></body>
+</html>
