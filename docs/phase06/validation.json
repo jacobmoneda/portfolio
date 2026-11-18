@@ -1,0 +1,409 @@
+{
+  "keyboard": [
+    {
+      "at": "start",
+      "position": "1 / 2",
+      "height": 680.75,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "before reversal",
+      "position": "2 / 2",
+      "height": 680.75,
+      "activeAnimations": 2,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 0.234831,
+          "leaving": true
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 0.765169,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "after reversal",
+      "position": "1 / 2",
+      "height": 680.75,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "during transition",
+      "position": "1 / 2",
+      "height": 680.75,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "settled",
+      "position": "1 / 2",
+      "height": 680.75,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    }
+  ],
+  "mobileRapid": [
+    {
+      "at": "start",
+      "position": "1 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "before reversal",
+      "position": "2 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 2,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 0.401489,
+          "leaving": true
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 0.598511,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "after reversal",
+      "position": "1 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 2,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 0.234776,
+          "leaving": false
+        },
+        {
+          "hidden": false,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 0.765224,
+          "leaving": true
+        }
+      ]
+    },
+    {
+      "at": "during transition",
+      "position": "2 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 2,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 0.610255,
+          "leaving": true
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 0.389745,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "settled",
+      "position": "2 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 0,
+          "leaving": false
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    }
+  ],
+  "reducedMotion": [
+    {
+      "at": "start",
+      "position": "1 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "before reversal",
+      "position": "2 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "after reversal",
+      "position": "1 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "during transition",
+      "position": "2 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "settled",
+      "position": "2 / 2",
+      "height": 438.66668701171875,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    }
+  ],
+  "offscreen": [
+    {
+      "at": "started",
+      "position": "2 / 2",
+      "height": 438.66668701171875,
+      "animated": true,
+      "activeAnimations": 2,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": true
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 0,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "before scroll",
+      "position": "2 / 2",
+      "height": 438.66668701171875,
+      "animated": true,
+      "activeAnimations": 2,
+      "slides": [
+        {
+          "hidden": false,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 0.401452,
+          "leaving": true
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 0.598548,
+          "leaving": false
+        }
+      ]
+    },
+    {
+      "at": "offscreen",
+      "position": "2 / 2",
+      "height": 438.66668701171875,
+      "animated": false,
+      "activeAnimations": 0,
+      "slides": [
+        {
+          "hidden": true,
+          "inert": true,
+          "ariaHidden": "true",
+          "opacity": 1,
+          "leaving": false
+        },
+        {
+          "hidden": false,
+          "inert": false,
+          "ariaHidden": null,
+          "opacity": 1,
+          "leaving": false
+        }
+      ]
+    }
+  ]
+}

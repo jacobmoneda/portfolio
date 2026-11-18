@@ -2,13 +2,13 @@
 
 ## Status
 
-**Current phase:** Phase 05 — Design engineering and interface refinement, completed locally for review.
+**Current phase:** Phase 06 — Motion design, implemented locally for review.
 
 **Design status:** Working Exhibition, signal orange accent, neutral headlines and the homepage content/navigation structure approved for implementation. Static homepage and project pages implemented locally. Selected project media is integrated. Homepage and affected case-study media were reviewed in desktop and mobile browser layouts.
 
 **Last reviewed:** 18 November 2026.
 
-**Current scope:** The user approved the targeted Phase 05 refinement recorded in section 18. Preserve the Phase 04 hierarchy and Projects terminology while refining composition, media scale and interface feedback. Earlier records are historical where superseded. Stop before Phase 06; no deployment is authorized.
+**Current scope:** The user authorized the restrained Phase 06 motion pass recorded in section 19. Preserve all Phase 05 composition, typography, colour, hierarchy and copy. Stop before Phase 07; no deployment is authorized.
 
 This document is the source of truth for approved design decisions.
 
@@ -144,7 +144,7 @@ Principles:
 
 **Mobile navigation:** The same visible text links, wrapping when needed. No overlay menu. All navigation works without JavaScript.
 
-**Scrolled header:** After 120px of page scroll, the sticky header reduces to a 56px inner height while keeping all navigation links visible. On narrow screens, compact spacing keeps the wordmark and links on one row.
+**Scrolled header:** After 120px of page scroll, the sticky header reduces to a 56px inner height while keeping all navigation links visible. It expands again at 64px or less. Separate thresholds prevent the height change and browser scroll anchoring from repeatedly reversing the state. On narrow screens, compact spacing keeps the wordmark and links on one row.
 
 **Theme control:** A sun/moon button sits at the right edge of the shared header. The selected theme persists across pages; light mode uses warm-paper backgrounds and charcoal text while preserving tonal section contrast and the signal-orange accent.
 
@@ -362,6 +362,66 @@ Read `references/emil-design-eng.md` and the approved decisions. Its relative de
 Captures: [before desktop](phase05/before-desktop.jpg), [after desktop](phase05/after-desktop.jpg), [before mobile](phase05/before-mobile.jpg), [after mobile](phase05/after-mobile.jpg), [refined project rows](phase05/project-rows.jpg).
 
 Phase 05 stops here for review. Phase 06 and deployment have not begun.
+
+## 19. Phase 06 — Motion design
+
+Implemented the user’s motion brief after reading AGENTS.md, MASTER-PROMPT.md, the approved decisions, `references/animate.md` and the relevant button recipe in `references/animate-RECIPES.md`. This replaces the earlier instruction to keep gallery changes entirely instantaneous for pointer input. Layout, wording, assets, routes and the editorial direction remain unchanged.
+
+### Motion audit and decisions
+
+| Interaction | Decision and purpose | Implementation |
+| --- | --- | --- |
+| Featured gallery and shared project gallery | Animate occasional pointer/touch changes to bridge the visual change | 200ms opacity crossfade on media only; captions, position and accessibility state update immediately |
+| Primary/project/external links | Small feedback confirms clickable affordances without moving text | Existing underline remains immediate; arrow moves 2px on fine-pointer hover, with 160ms return |
+| Buttons, gallery controls, theme control | Tactile feedback confirms a press | 1px vertical press/release over 160ms; existing colour feedback is immediate |
+| Main navigation | Keep active state precise; restrained hover feedback only | Active orange underline appears immediately; non-current hover underline uses the existing scaleX treatment at 160ms |
+| Keyboard and assistive activation | Static, immediate response | No crossfade for keyboard or zero-detail click activation; keyboard focus, link feedback and anchor scrolling are immediate |
+| Theme switching | Keep the page readable throughout the change | Instant palette/icon change; no whole-page colour animation or fade |
+| Images and video playback | Evidence remains stable and playback deliberate | No image zoom; no player entrance animation. Play/chapter buttons load one player only on request; leaving unloads it and returning shows its poster |
+| Mobile navigation | Preserve the visible links | Same feedback system; hover motion is gated to hover-capable fine pointers; no animated menu |
+| Page/section transitions | Keep static | No entrances, stagger, parallax or loading sequence. Existing native pointer-initiated anchor scrolling remains; keyboard/reduced-motion scrolling is immediate |
+
+### Tokens and implementation sequence
+
+The gate is feedback for frequently used controls and continuity for occasional media changes. No narrative benefit justified a section reveal. Native CSS transitions are the simplest tool; no Motion, GSAP, package or dependency was added.
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `--motion-feedback` | `160ms` | Pointer hover, underline and press feedback |
+| `--motion-media` | `200ms` | Media crossfade |
+| `--ease` | Existing `cubic-bezier(.22,1,.36,1)` | Reused strong ease-out curve; no parallel easing system |
+
+Only transform and opacity animate. No layout dimensions or page colours are animated. Hover transforms remain behind `(hover:hover) and (pointer:fine)`. The page is never initially hidden.
+
+Incoming and outgoing media reuse their existing elements, so a rapid reversal retargets the live CSS opacity instead of restarting a keyframe or queuing slides. Outgoing slides become inert and aria-hidden immediately; after the fade they are hidden from rendering too. Focus transfers to the gallery before a focused outgoing slide becomes inert. Controls stay usable during transitions. No live iframe is cloned: video departure stops the player immediately and the local poster participates in the media fade.
+
+Keyboard input, a reduced-motion preference change, a hidden document or an offscreen gallery settles the current slide and explicitly cancels its CSS transitions through the native animation API. There are no animation timers, animation loops or automatic slide advances. Native CSS handles the fade; JavaScript only changes state and performs cleanup.
+
+Reduced motion keeps the established immediate variant: no transitions or transforms, visible focus and instant slide/anchor changes. It is intentionally stricter than a gentle fade, consistent with the existing accessibility baseline. With JavaScript disabled, all media remains in normal document flow and unused carousel controls stay hidden.
+
+### Validation
+
+- Inspected the actual desktop/mobile interface and a five-times-slower development crossfade to inspect the intermediate frame. Production remains 200ms. No composition or crop change was introduced.
+- Rapid reversal fixture: next → previous → next at 0/60/110ms. Both opacities retargeted from intermediate values; the final selected slide was correct, fully opaque, and the outgoing slide hidden/inert. No animations remained after settling.
+- Gallery height stayed 680.75px at 1440px and 438.67px at 390px throughout the rapid transition. Opacity animation did not alter layout. The separate video project retains its existing content-driven caption heights; they are not animated.
+- Keyboard interruption at 60ms immediately produced the requested slide at opacity 1 with zero animations. Enter activation and navigation focus were also checked on the real page; About’s active indicator and keyboard anchor scrolling were immediate.
+- Tested real pointer clicks, a double-click and a pointer swipe at mobile width. Position indicators and visible content agreed; no slides advanced automatically.
+- A development fixture enabled the actual reduced-motion CSS and JavaScript branches. The same rapid sequence produced zero animations at every sample. This is preference simulation, not a physical OS-setting test.
+- Offscreen interruption cancelled both media transitions and left zero running animations. Returning to the gallery showed the selected slide fully visible.
+- The Go2 player loaded on explicit activation, was removed when moving to the poster, and did not restart when returning. The supplied poster loaded correctly.
+- Script-blocked fallback: both feature images and the project link were available, with carousel controls hidden. Light/dark switching remained instant and usable.
+- Checked 320, 390, 768 and 1440px widths without horizontal overflow. JavaScript syntax, CSS parsing, HTML structure and local-reference checks passed. No build/lint/type scripts exist in this static repository.
+- **Remaining limits:** physical touchscreen/multi-touch and device frame-rate testing, screen-reader/audio-caption audit and native OS reduced-motion switching remain unverified. Mobile viewport testing is not a physical-device performance claim. Native-video playback is not exercised because the supplied demonstration uses YouTube.
+
+Recorded samples: [validation.json](phase06/validation.json). Review captures: [desktop](phase06/homepage-desktop.jpg), [mobile gallery](phase06/gallery-mobile.jpg). Temporary development fixtures were removed from the site after testing.
+
+### Header stability follow-up
+
+Fixed the reported scroll-boundary flicker without changing the header styling. The previous single 120px threshold let browser scroll anchoring reverse the compact state repeatedly as the header changed height: the reproduction recorded 55 state changes in 900ms. The shared script now collapses above 120px and expands at 64px or less, with class changes only when the state actually changes.
+
+Browser checks at 1440, 390 and 320px widths confirmed one state change and a stable result for both collapse and expansion. JavaScript syntax validation passed. All seven pages reference the updated script version to avoid retaining the cached implementation. [Compact header capture](phase06/header-stability.png).
+
+Phase 06 stops here. Phase 07 and deployment have not begun.
 
 ## Maintenance rule
 

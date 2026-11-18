@@ -10,6 +10,9 @@
   };
   window.addEventListener("keydown", useKeyboard, { capture: true });
   window.addEventListener("pointerdown", () => { root.dataset.input = "pointer"; }, { capture: true, passive: true });
+  window.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "mouse" && root.dataset.input === "keyboard") root.dataset.input = "pointer";
+  }, { passive: true });
   reducedMotion.addEventListener("change", () => {
     if (reducedMotion.matches) settleGalleries.forEach((settle) => settle());
   });
@@ -61,8 +64,13 @@
       applyTheme(theme === "light" ? "dark" : "light", true);
     });
 
-    const updateHeader = () =>
-      header.classList.toggle("is-compact", window.scrollY > 120);
+    const updateHeader = () => {
+      const compact = header.classList.contains("is-compact");
+      // Shrinking the header changes scroll anchoring (up to ~48px on mobile).
+      // Separate thresholds prevent that adjustment from toggling it back again.
+      const nextCompact = window.scrollY > (compact ? 64 : 120);
+      if (nextCompact !== compact) header.classList.toggle("is-compact", nextCompact);
+    };
     updateHeader();
     window.addEventListener("scroll", updateHeader, { passive: true });
   }
@@ -138,23 +146,21 @@
     });
     position.setAttribute("aria-label", `1 of ${slides.length}: ${slides[0].dataset.slideName}`);
     controls.hidden = false;
+    let transitionRevision = 0;
     const settle = () => {
+      transitionRevision++;
       carousel.classList.remove("is-animated");
       slides.forEach((slide, index) => {
         slide.hidden = index !== current;
         slide.classList.remove("is-leaving");
+        // Cancel the live CSS transition too; changing classes alone can leave
+        // its last compositor frame running until the next style update.
+        slide.querySelectorAll(".carousel-frame, .video-stage").forEach((frame) => {
+          frame.getAnimations().forEach((animation) => animation.cancel());
+        });
       });
     };
     settleGalleries.add(settle);
-    // Hide outgoing content only after its media has faded. It is inert immediately.
-    carousel.addEventListener("transitionend", (event) => {
-      if (event.propertyName !== "opacity") return;
-      const slide = event.target.closest("[data-slide]");
-      if (slide && slide !== slides[current]) {
-        slide.hidden = true;
-        slide.classList.remove("is-leaving");
-      }
-    });
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(([entry]) => {
         if (!entry.isIntersecting) settle();
@@ -194,6 +200,16 @@
       incoming.classList.add("is-current");
       position.textContent = `${current + 1} / ${slides.length}`;
       position.setAttribute("aria-label", `${current + 1} of ${slides.length}: ${slides[current].dataset.slideName}`);
+      if (animate) {
+        const revision = ++transitionRevision;
+        // A same-frame reversal may never start a transition or fire transitionend.
+        // Await the actual CSS transitions, including cancellation, without timers.
+        const transitions = [...carousel.querySelectorAll(".carousel-frame, .video-stage")]
+          .flatMap((media) => media.getAnimations());
+        Promise.allSettled(transitions.map((transition) => transition.finished)).then(() => {
+          if (revision === transitionRevision) settle();
+        });
+      }
     };
     carousel.querySelector("[data-previous]").addEventListener("click", (event) => show(current - 1, event.detail > 0));
     carousel.querySelector("[data-next]").addEventListener("click", (event) => show(current + 1, event.detail > 0));
@@ -210,7 +226,7 @@
     });
     let pointerStart;
     carousel.addEventListener("pointerdown", (event) => {
-      if (pointerStart || !event.isPrimary || event.button !== 0 || !event.target.closest(".carousel-frame") || event.target.closest("a, button, video, iframe")) return;
+      if (pointerStart || !event.isPrimary || event.button !== 0 || !event.target.closest(".carousel-frame, .video-stage") || event.target.closest("a, button, video, iframe")) return;
       pointerStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
       carousel.setPointerCapture(event.pointerId);
     });

@@ -34,6 +34,6 @@ Existing contact information is retained for local review. Confirm public email,
 
 ## Verification
 
-The current Phase 05 review is recorded in section 18 of `docs/DESIGN-DECISIONS.md`, including checks completed and their limits. This static repository has no package installation, build, lint or type-check scripts. JavaScript syntax is checked with `node --check src/script.js`.
+The current Phase 06 review is recorded in section 19 of `docs/DESIGN-DECISIONS.md`, including checks completed and their limits. This static repository has no package installation, build, lint or type-check scripts. JavaScript syntax is checked with `node --check src/script.js`.
 
-Phase 05 refinements are implemented locally. Phase 06 and deployment have not begun.
+Phase 06 motion refinements are implemented locally. Phase 07 and deployment have not begun.

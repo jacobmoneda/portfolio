@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en-NZ">
-<head><script>const actualMatchMedia=window.matchMedia.bind(window); window.matchMedia=query=>query==='(prefers-reduced-motion: reduce)'?Object.assign(new EventTarget(),{matches:true,media:query}):actualMatchMedia(query);</script>
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Selected projects by Jacob Moneda in software development, robotics, computer vision, AI and spatial data science.">
@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="qa-reduced.css">
-  <script src="script.js?v=phase06-1" defer></script>
+  <link rel="stylesheet" href="qa-p07-reduced.css">
+  <script src="qa-p07-pref.js"></script><script src="script.js?v=phase07-1" defer></script>
 </head>
 <body class="homepage">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -64,5 +64,5 @@
     <section class="contact light-section" id="contact" aria-labelledby="contact-title"><div class="wrap contact-layout"><h2 id="contact-title">Get in touch</h2><div><a class="text-link contact-email" href="mailto:jacob.moneda@protonmail.com">jacob.moneda@protonmail.com <span aria-hidden="true">↗</span></a><div class="contact-links"><a class="text-link" href="https://github.com/jacobmoneda">GitHub <span aria-hidden="true">↗</span></a><a class="text-link" href="https://www.linkedin.com/in/jacob-moneda-236028252/">LinkedIn <span aria-hidden="true">↗</span></a></div></div></div></section>
   </main>
   <footer class="site-footer wrap"><p>© <span data-year>2026</span> Jacob Moneda</p><a href="#intro">Back to top <span aria-hidden="true">↑</span></a></footer>
-<aside style="position:fixed;bottom:8px;left:8px;z-index:999;background:white;color:black;padding:8px"><button id="qa-rapid">Run rapid reversal</button><button id="qa-keyboard">Run keyboard interruption</button><output id="qa-result" style="display:none"></output></aside><script src="qa-motion.js" defer></script></body>
+<aside style="position:fixed;bottom:0;left:0;z-index:99;background:white;color:black;padding:8px"><button id="qa-run">Run interaction checks</button><output id="qa-result" hidden></output></aside><script src="qa-p07.js" defer></script></body>
 </html>
