@@ -1,1 +1,0 @@
-const nativeMatchMedia=window.matchMedia.bind(window); window.matchMedia=query=>query==="(prefers-reduced-motion: reduce)" ? {matches:true,addEventListener(){}} : nativeMatchMedia(query);

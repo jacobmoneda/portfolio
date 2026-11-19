@@ -2,13 +2,13 @@
 
 ## Status
 
-**Current phase:** Phase 06 — Motion design, implemented locally for review.
+**Current phase:** Phase 08 — Visual composition critique, implemented locally for review.
 
 **Design status:** Working Exhibition, signal orange accent, neutral headlines and the homepage content/navigation structure approved for implementation. Static homepage and project pages implemented locally. Selected project media is integrated. Homepage and affected case-study media were reviewed in desktop and mobile browser layouts.
 
-**Last reviewed:** 18 November 2026.
+**Last reviewed:** 19 November 2026.
 
-**Current scope:** The user authorized the restrained Phase 06 motion pass recorded in section 19. Preserve all Phase 05 composition, typography, colour, hierarchy and copy. Stop before Phase 07; no deployment is authorized.
+**Current scope:** The user authorized the targeted Phase 08 composition pass recorded in section 21. Preserve the approved visual identity, project hierarchy, factual content and motion system. Stop before Phase 09; no deployment is authorized.
 
 This document is the source of truth for approved design decisions.
 
@@ -182,7 +182,7 @@ Working principles:
 - Accessible reduced-motion alternatives
 - No scroll hijacking or gratuitous loading sequences
 
-**Motion tokens:** Existing 180ms CSS feedback; smooth anchor scrolling disabled under reduced motion.
+**Motion tokens:** 160ms feedback and 200ms media crossfades with the existing `cubic-bezier(.22,1,.36,1)` easing, as established in Phase 06. Keyboard and reduced-motion interactions are immediate.
 
 **Signature interaction:** Approved Go2 chapter rail with starts at 0:00, 0:46 and 1:04. Links enhance to native buttons, loading one player only after activation. Requested-chapter state is not continuous playback tracking. Direct and timestamped YouTube links remain available without JavaScript.
 
@@ -422,6 +422,74 @@ Fixed the reported scroll-boundary flicker without changing the header styling. 
 Browser checks at 1440, 390 and 320px widths confirmed one state change and a stable result for both collapse and expansion. JavaScript syntax validation passed. All seven pages reference the updated script version to avoid retaining the cached implementation. [Compact header capture](phase06/header-stability.png).
 
 Phase 06 stops here. Phase 07 and deployment have not begun.
+
+## 20. Phase 07 — Animation recipes and micro-interaction refinement
+
+Reviewed the Phase 06 implementation against `references/animate.md` and `references/animate-RECIPES.md`. The button recipe supports the existing short transform feedback; its scale example does not justify changing the approved 1px press. The gesture recipe's capture and cancellation guidance applies to the existing discrete swipe, without adding momentum or springs. No layout, content, imagery or visual identity change was required.
+
+### Targeted refinements
+
+- **Carousel completion:** a next → previous reversal within one rendering frame left an invisible outgoing slide unhidden because no `transitionend` event occurred. Cleanup now follows the actual CSS transitions' completion/cancellation promises, guarded by a revision so an older transition cannot settle a newer one. An empty transition list also cleans up. No timer, animation loop or new dependency was added.
+- **Consistent media gestures:** the Go2 video preview now accepts the same horizontal pointer swipe as other gallery images. Native video, iframe and button interactions remain excluded; vertical scrolling and pinch zoom remain available. This does not initiate playback.
+- **Directional link feedback:** the left arrow on Back to projects moves 2px left on fine-pointer hover, rather than diagonally up/right. The existing feedback duration and reduced-motion/keyboard overrides apply.
+- Removed redundant press, theme-transition and reduced-motion declarations. Their visual behavior is unchanged.
+
+### Intentionally unchanged
+
+Retained 200ms media opacity crossfades, 160ms transform feedback and the existing easing. Captions, counters, active navigation, keyboard actions and theme changes remain immediate. Project arrows retain their restrained hover treatment; images do not zoom. The stable compact-header thresholds remain 120px/64px. There are no menus, dropdowns or custom tooltips requiring recipes. No reveal improves this portfolio's narrative enough to justify hiding content, so page and section entrances remain static. No autoplay or automatic slide progression was introduced.
+
+### Verification and limits
+
+- Compared baseline and refined rendering in the browser. The same-frame reversal now leaves only the active slide rendered; outgoing content is hidden and inert, with zero remaining animations. Next → previous → next at 0/60/110ms also settles correctly.
+- Featured gallery height remained 680.75px at 1440px and 438.67px at 390px across sampled transitions. Mid-fade samples showed complementary media opacities; settling, keyboard interruption and offscreen cancellation left zero running gallery animations.
+- Checked actual pointer controls, a held press (approximately 1px movement using the 160ms token), pointer swipes at mobile width, Enter activation, arrow/Home/End behavior, focus indication and position labels. The Go2 preview swipe changed slides after previously doing nothing. Playback created one iframe; leaving removed it; returning did not restart it.
+- Tested light/dark switching and About's active state. Back-link hover resolved to `translateX(-2px)` with the shared 160ms duration. Checked widths 320, 390, 768 and 1440px; no horizontal overflow was observed in checked layouts. Supplied gallery images loaded.
+- A temporary development fixture enabled the real reduced-motion CSS and JavaScript branches. Every sampled carousel operation had zero animations and the correct final slide. This is simulated preference coverage, not an OS-setting test.
+- JavaScript syntax, CSS parsing, unique IDs, one h1 per page, image alt/dimension attributes and 145 local references across seven production HTML pages passed. No package-based build, lint or type-check scripts exist in this static repository.
+- **Remaining limits:** physical touch/multi-touch, mobile-device frame rates, native OS preference changes, screen-reader and audio/caption behavior were not tested. Pointer gestures at a mobile viewport are not physical touch verification. The supplied gallery video uses YouTube, so native-video playback remains unexercised. No claim of a full performance profile is made.
+
+Temporary QA fixtures were removed after review. [Desktop review capture](phase07/desktop.jpg). Phase 07 stops here; Phase 08 and deployment have not begun.
+
+## 21. Phase 08 — Visual composition critique, 19 November 2026
+
+Read AGENTS.md, MASTER-PROMPT.md, the approved decisions, `references/visual-critique.md` and `references/better-layout.md`. Reviewed the actual complete homepage in desktop/mobile layouts, both themes, both feature slides, the secondary project list, About/Contact and the thermal project page. The latest approved thermal-first sequence remains authoritative over historical proposals.
+
+### Composition critique
+
+Ratings describe the findings before this pass. None required a redesign.
+
+| Dimension | Observation | Problem | Precise response | Rating |
+| --- | --- | --- | --- | --- |
+| Balance | The large neutral title and authentic portrait dominate; secondary media rows alternate with compact text-only rows | No consequential imbalance in the inspected views. The portrait's narrower visible width is intentional full-frame containment, not a missing thumbnail column | Preserve hero proportions, title scale, full frames and meaningful secondary-image sizes | Pass |
+| Whitespace | The landscape thermal screenshot floats vertically within a taller stable frame; its caption has extra separation. Wrapped next-project titles use body-like leading | Related image/caption content reads less connected; a wrapped project name reads as two loosely separated lines | Bottom-align feature images within the unchanged frame; use the existing 1.2 heading leading for next-project titles | Minor issue |
+| Rhythm | Tall feature, varied editorial rows, short About, large Contact and alternating tones form a readable progression | No need for another layout pattern or tighter global spacing. Repeated app actions locally interrupt the thermal evidence sequence | Preserve the homepage sequence and section padding; remove the standalone app link immediately below the same destination in the image caption | Pass overall; minor local repetition |
+| Gestalt / alignment | About and Contact share an edge at large desktop widths, but different gaps offset the columns at intermediate widths; Contact stacks sooner at tablet width | The closing sections appear to follow unrelated grids | Match their 1:2 column proportions and responsive gaps, then stack both at 540px and below | Minor issue |
+
+### Implemented decisions
+
+- Feature imagery keeps `object-fit:contain`, all original aspect ratios and the existing carousel frame/control dimensions. Images align to the frame's bottom (right on desktop, centred horizontally when stacked), placing captions consistently below the visible media. At the wide desktop sample this removes approximately 38px of internal space below the landscape screenshot; it does not crop or enlarge it.
+- About and Contact use shrinkable 1:2 grid columns. Contact now follows About's existing gap steps: 80px desktop, 40px below 1050px, 32px below 720px and 24px when stacked at 540px. Section padding remains unchanged. This replaces Contact's earlier 850px stacking point.
+- Shared next-project headings retain Manrope, 36px size and existing tracking, with 1.2 leading instead of inherited 1.6. The mobile thermal-page continuation is more clearly grouped as one title.
+- Removed only the redundant “Explore the thermal processing app” link below the thermal project evidence. The linked screenshot and its visible “Open the app” caption link remain. No factual description, contribution, qualification, project name or route was removed.
+- Updated stylesheet versions on all seven pages. JavaScript, motion tokens, keyboard/reduced-motion behavior and media loading logic are unchanged. No dependency or decorative element was added.
+
+### Comparison and validation
+
+- Inspected full before/after homepage captures at 1440px and 390px, the light-theme tablet closing sequence, and the alternate thermal image at 1920px. The portrait-led desktop opening and mobile hierarchy remain intact; the two corrected alignment relationships are visible in the comparison captures.
+- Measured homepage widths 320, 390, 540, 541, 600, 720, 768, 850, 851, 1024, 1440 and 1920px. No horizontal overflow was found. About and Contact's content columns share the same x coordinate at every checked width after refinement, including immediately either side of stacking thresholds.
+- Confirmed the feature retains a 680.75px gallery height in the wide desktop sample and 438.67px across both slides in the settled 390px viewport. Image frames, controls and slide counts remain stable. Checked pointer navigation including a double-click, keyboard activation and visible focus; theme switching and the homepage project link also work.
+- Reviewed the thermal project page at 1440px and 390px. The revised mobile next-project title computes to 43.2px leading at 36px type, and the evidence still has both the linked screenshot and caption destination.
+- JavaScript syntax and recursive CSS parsing passed. Seven production HTML pages passed unique-ID, one-h1, image alt/dimension and 145 local file/fragment/srcset reference checks. There are no configured package-based build, lint or type scripts.
+- **Not verified in this pass:** native 200% zoom, RTL or translated-text layouts, physical touch devices, screen-reader behavior, OS reduced-motion switching, device frame rates and video playback/audio. Phase 07's motion implementation was preserved; this phase does not claim a new comprehensive motion or accessibility audit. No new temporary test pages were needed.
+
+### Review evidence
+
+- Homepage: [before desktop](phase08/before-desktop.jpg), [after desktop](phase08/after-desktop.jpg), [before mobile](phase08/before-mobile.jpg), [after mobile](phase08/after-mobile.jpg).
+- Closing sequence: [before tablet](phase08/before-closing-tablet.jpg), [after tablet](phase08/after-closing-tablet.jpg).
+- Thermal screenshot grouping: [before](phase08/before-landscape-light.jpg), [after](phase08/after-landscape-light.jpg).
+- Project page: [before mobile](phase08/thermal-project-mobile.jpg), [after mobile](phase08/thermal-project-after-mobile.jpg).
+
+Approve the inspected compositions with these targeted refinements; this does not extend approval to unverified coverage. Phase 08 stops here. Phase 09 and deployment have not begun.
 
 ## Maintenance rule
 

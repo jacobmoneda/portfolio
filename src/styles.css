@@ -147,7 +147,7 @@ figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8p
 .case-copy .media-label > p { font-size:24px; }
 .case-note { color:var(--muted); font-size:14px; }
 .case-next { display:flex; justify-content:space-between; align-items:end; gap:32px; padding-block:64px; }
-.case-next h2 { margin-top:16px; font-size:36px; letter-spacing:-.035em; }
+.case-next h2 { margin-top:16px; font-size:36px; line-height:1.2; letter-spacing:-.035em; }
 .case-next h2 a { text-decoration:none; }
 @media (hover:hover) and (pointer:fine) { .case-next h2 a:hover { text-decoration:underline; } }
 @media (max-width:1050px) {
@@ -196,7 +196,7 @@ figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8p
 .is-ready .carousel-slide { margin:0; }
 .carousel-frame { display:flex; align-items:center; justify-content:center; aspect-ratio:1.12; }
 .carousel-frame img,.carousel-frame video { width:100%; height:100%; object-fit:contain; }
-.featured-gallery .carousel-frame img { object-position:right center; }
+.featured-gallery .carousel-frame img { object-position:right bottom; }
 .carousel-frame,.media-carousel .video-stage { touch-action:pan-y pinch-zoom; }
 .carousel-frame img,.media-carousel .video-stage > img { user-select:none; -webkit-user-drag:none; }
 .media-carousel .carousel-slide > figcaption { padding:16px 0 0; border:0; font-size:13px; align-items:baseline; }
@@ -220,11 +220,11 @@ figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8p
 .project-thumbnail img { width:100%; height:auto; }
 .phone-thumbnail { display:flex; align-items:start; gap:24px; width:fit-content; max-width:100%; }
 .phone-thumbnail img { width:auto; height:320px; max-width:calc(50% - 12px); object-fit:contain; object-position:top; }
-.homepage .about { grid-template-columns:1fr 2fr; border:0; padding-block:72px; }
+.homepage .about { grid-template-columns:minmax(0,1fr) minmax(0,2fr); border:0; padding-block:72px; }
 .homepage .about h2 { margin:0; font-size:32px; letter-spacing:-.035em; }
 .homepage .about-copy { max-width:57ch; }
 .homepage .contact { padding-block:64px; }
-.contact-layout { display:grid; grid-template-columns:1fr 2fr; gap:80px; }
+.contact-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2fr); gap:80px; }
 .contact-layout h2 { font-size:clamp(2rem,3.6vw,3rem); letter-spacing:-.045em; line-height:1.15; }
 .contact-email { overflow-wrap:anywhere; }
 .homepage .contact-links { margin-top:24px; }
@@ -238,6 +238,7 @@ figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8p
 .app-screens img { max-height:600px; object-fit:contain; }
 .app-screens figcaption { border:0; padding-inline:0; }
 @media (max-width:1050px) {
+  .contact-layout { gap:40px; }
   .featured-project { gap:40px; }
   .featured-copy h3 { font-size:clamp(2.75rem,5vw,3.5rem); }
   .featured-description { font-size:18px; }
@@ -249,12 +250,14 @@ figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8p
   .featured-description { max-width:55ch; margin-top:24px; }
   .featured-copy .button { margin-top:24px; }
   .featured-gallery { width:100%; max-width:680px; justify-self:center; }
-  .featured-gallery .carousel-frame img { object-position:center; }
+  .featured-gallery .carousel-frame img { object-position:center bottom; }
   .carousel-frame { aspect-ratio:1.12; }
   .selected-project { gap:40px; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
   .phone-thumbnail { gap:16px; }
   .phone-thumbnail img { height:280px; max-width:calc(50% - 8px); }
-  .contact-layout { grid-template-columns:1fr; gap:24px; }
+}
+@media (max-width:720px) {
+  .contact-layout { gap:32px; }
 }
 @media (max-width:540px) {
   .header-inner { flex-wrap:wrap; gap:8px 16px; padding-block:12px; }
@@ -274,6 +277,7 @@ figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8p
   .phone-thumbnail img { height:280px; }
   .homepage .about,.homepage .contact { padding-block:48px; }
   .homepage .about { grid-template-columns:1fr; gap:24px; }
+  .contact-layout { grid-template-columns:1fr; gap:24px; }
   .app-screens { gap:24px; }
   .contact-email { gap:12px; }
 }
