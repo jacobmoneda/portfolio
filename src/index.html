@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=phase08-1">
-  <script src="script.js?v=phase07-1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=phase10-1">
+  <script src="script.js?v=phase10-1" defer></script>
 </head>
 <body class="homepage">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -37,7 +37,8 @@
           <p class="featured-description">I develop arm positioning and thermal analysis tools, and work on robot localization.</p>
           <a class="button" href="projects/thermal-inspection.html">View project <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="media-carousel featured-gallery" data-carousel role="region" aria-label="Robotic inspection media">
+        <div class="media-carousel featured-gallery" data-carousel data-auto-rotate role="region" aria-label="Robotic inspection media">
+          <button class="carousel-rotation" type="button" data-rotation aria-controls="thermal-slides" hidden>Pause slideshow</button>
           <div class="carousel-slides" id="thermal-slides">
             <figure class="carousel-slide" data-slide data-slide-name="Inspection setup">
               <div class="carousel-frame"><img src="assets/images/thermal-setup-960.webp" srcset="assets/images/thermal-setup-480.webp 480w, assets/images/thermal-setup-960.webp 960w, assets/images/thermal-setup-1440.webp 1440w" sizes="(max-width: 720px) calc(100vw - 48px), 480px" width="960" height="1280" fetchpriority="high" decoding="async" draggable="false" alt="Unitree Go2 with an articulated arm holding a thermal camera in the lab"></div>

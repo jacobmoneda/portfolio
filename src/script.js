@@ -120,7 +120,8 @@
       });
     });
   });
-  // One manual carousel per gallery. Without JS, every figure stays in the page.
+  // Galleries are manual unless explicitly opted into desktop rotation.
+  // Without JS, every figure stays in the page.
   document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     const slides = [...carousel.querySelectorAll("[data-slide]")];
     const controls = carousel.querySelector("[data-carousel-controls]");
@@ -161,9 +162,14 @@
       });
     };
     settleGalleries.add(settle);
+    let syncRotation = () => {};
+    const initialBounds = carousel.getBoundingClientRect();
+    let inView = initialBounds.bottom > 0 && initialBounds.top < window.innerHeight;
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
         if (!entry.isIntersecting) settle();
+        syncRotation();
       }).observe(carousel);
     }
     const show = (next, animate = false) => {
@@ -211,6 +217,80 @@
         });
       }
     };
+    const rotationControl = carousel.querySelector("[data-rotation]");
+    if (carousel.hasAttribute("data-auto-rotate") && rotationControl) {
+      // Match the homepage's side-by-side desktop layout, excluding touch devices.
+      const desktop = window.matchMedia("(min-width: 851px) and (hover: hover) and (pointer: fine)");
+      let rotationTimer;
+      let stopped = false;
+      let hovered = carousel.matches(":hover");
+      let pageActive = true;
+      let focusAllowsRotation = false;
+      let pointerRotationIntent;
+      const canRotate = () => !stopped && pageActive && desktop.matches && !reducedMotion.matches
+        && !document.hidden && inView && !hovered
+        && (!carousel.contains(document.activeElement)
+          || (focusAllowsRotation && document.activeElement === rotationControl));
+      syncRotation = () => {
+        clearTimeout(rotationTimer);
+        rotationTimer = undefined;
+        rotationControl.hidden = !desktop.matches || reducedMotion.matches;
+        rotationControl.textContent = stopped ? "Start slideshow" : "Pause slideshow";
+        const rotating = canRotate();
+        // Automatic changes should not interrupt screen-reader announcements.
+        position.setAttribute("aria-live", rotating ? "off" : "polite");
+        if (!rotating) return;
+        rotationTimer = setTimeout(() => {
+          if (canRotate()) show(current + 1, root.dataset.input !== "keyboard");
+          syncRotation();
+        }, 10000);
+      };
+      const stopRotation = () => {
+        stopped = true;
+        focusAllowsRotation = false;
+        syncRotation();
+      };
+      rotationControl.addEventListener("pointerdown", () => {
+        // Preserve the requested action before pointer focus stops rotation.
+        pointerRotationIntent = !stopped;
+      });
+      rotationControl.addEventListener("pointercancel", () => { pointerRotationIntent = undefined; });
+      rotationControl.addEventListener("click", (event) => {
+        stopped = event.detail > 0 && pointerRotationIntent !== undefined
+          ? pointerRotationIntent : !stopped;
+        pointerRotationIntent = undefined;
+        focusAllowsRotation = !stopped;
+        syncRotation();
+      });
+      carousel.addEventListener("pointerenter", (event) => {
+        if (event.pointerType === "touch") return;
+        hovered = true;
+        syncRotation();
+      });
+      carousel.addEventListener("pointerleave", () => {
+        hovered = false;
+        syncRotation();
+      });
+      carousel.addEventListener("focusin", stopRotation);
+      // Wait until the next focused element is known, including focus within controls.
+      carousel.addEventListener("focusout", () => queueMicrotask(syncRotation));
+      // Manual media interaction hands over control until an explicit restart.
+      const stopForInteraction = (event) => {
+        if (!rotationControl.contains(event.target)) stopRotation();
+      };
+      carousel.addEventListener("pointerdown", stopForInteraction, { capture: true, passive: true });
+      carousel.addEventListener("click", stopForInteraction, { capture: true });
+      carousel.addEventListener("keydown", (event) => {
+        if (event.target === rotationControl && ["Enter", " "].includes(event.key)) return;
+        if (["ArrowLeft", "ArrowRight", "Home", "End", "Enter", " "].includes(event.key)) stopRotation();
+      }, { capture: true });
+      desktop.addEventListener("change", syncRotation);
+      reducedMotion.addEventListener("change", syncRotation);
+      document.addEventListener("visibilitychange", syncRotation);
+      window.addEventListener("pagehide", () => { pageActive = false; syncRotation(); });
+      window.addEventListener("pageshow", () => { pageActive = true; syncRotation(); });
+      syncRotation();
+    }
     carousel.querySelector("[data-previous]").addEventListener("click", (event) => show(current - 1, event.detail > 0));
     carousel.querySelector("[data-next]").addEventListener("click", (event) => show(current + 1, event.detail > 0));
     carousel.addEventListener("keydown", (event) => {
@@ -242,6 +322,21 @@
         const rtl = getComputedStyle(carousel).direction === "rtl";
         show(current + ((dx < 0) !== rtl ? 1 : -1), true);
       }
+    });
+  });
+  // Bind after the theme and video controls have been created. Keep the entry
+  // point fixed while hovered so the circle expands naturally to every corner.
+  const hoverPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  document.querySelectorAll("button, .button, .video-play, .video-chapters a").forEach((button) => {
+    button.addEventListener("pointerenter", (event) => {
+      if (!hoverPointer.matches || event.pointerType === "touch" || button.disabled) return;
+      const bounds = button.getBoundingClientRect();
+      const x = Math.max(0, Math.min(button.clientWidth, event.clientX - bounds.left - button.clientLeft));
+      const y = Math.max(0, Math.min(button.clientHeight, event.clientY - bounds.top - button.clientTop));
+      const radius = Math.hypot(Math.max(x, button.clientWidth - x), Math.max(y, button.clientHeight - y));
+      button.style.setProperty("--hover-x", `${x}px`);
+      button.style.setProperty("--hover-y", `${y}px`);
+      button.style.setProperty("--hover-radius", `${Math.ceil(radius)}px`);
     });
   });
   const links = [...document.querySelectorAll("[data-nav]")];

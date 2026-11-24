@@ -34,6 +34,6 @@ Existing contact information is retained for local review. Confirm public email,
 
 ## Verification
 
-The current Phase 08 review is recorded in section 21 of `docs/DESIGN-DECISIONS.md`, including composition comparisons, checks completed and their limits. This static repository has no package installation, build, lint or type-check scripts. JavaScript syntax is checked with `node --check src/script.js`.
+The Phase 09 taste assessment is recorded in `docs/PHASE-09-TASTE-ASSESSMENT.md`, with targeted decisions in section 22 of `docs/DESIGN-DECISIONS.md`. It includes rendered evidence, checks completed and their limits. This static repository has no package installation, build, lint or type-check scripts. JavaScript syntax is checked with `node --check src/script.js`.
 
-Phase 08 composition refinements are implemented locally. Phase 09 and deployment have not begun.
+Phase 09 is complete locally. Empty project-media placeholders were removed while explicit missing-evidence notices remain. Phase 10 and deployment have not begun.

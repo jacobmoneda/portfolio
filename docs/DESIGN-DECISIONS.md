@@ -2,13 +2,13 @@
 
 ## Status
 
-**Current phase:** Phase 08 — Visual composition critique, implemented locally for review.
+**Current phase:** Phase 09 — Taste and originality assessment, completed locally with targeted removals.
 
 **Design status:** Working Exhibition, signal orange accent, neutral headlines and the homepage content/navigation structure approved for implementation. Static homepage and project pages implemented locally. Selected project media is integrated. Homepage and affected case-study media were reviewed in desktop and mobile browser layouts.
 
-**Last reviewed:** 19 November 2026.
+**Last reviewed:** 20 November 2026.
 
-**Current scope:** The user authorized the targeted Phase 08 composition pass recorded in section 21. Preserve the approved visual identity, project hierarchy, factual content and motion system. Stop before Phase 09; no deployment is authorized.
+**Current scope:** The user authorized the Phase 09 assessment and small evidence-supported refinements recorded in section 22. Preserve the approved visual identity, project hierarchy, factual content and motion system. Stop before Phase 10; no deployment is authorized.
 
 This document is the source of truth for approved design decisions.
 
@@ -490,6 +490,34 @@ Ratings describe the findings before this pass. None required a redesign.
 - Project page: [before mobile](phase08/thermal-project-mobile.jpg), [after mobile](phase08/thermal-project-after-mobile.jpg).
 
 Approve the inspected compositions with these targeted refinements; this does not extend approval to unverified coverage. Phase 08 stops here. Phase 09 and deployment have not begun.
+
+## 22. Phase 09 — Taste and originality assessment, 20 November 2026
+
+Full critique and rendered evidence: [PHASE-09-TASTE-ASSESSMENT.md](PHASE-09-TASTE-ASSESSMENT.md).
+
+- Assessment: **Characterful**, with **Convicted** as the identity surface's intended ceiling. The reference's overall grade is **Competent** because the craft holds but several project accounts still lack the evidence needed to sustain the opening's specificity. This is an editorial/content assessment, not approval to redesign the site.
+- **Missing-media presentation refinement:** retain the explicit availability notices on the RAG, spatial modelling and text-classification pages, but remove their repeated empty figure panels. This replaces the earlier project-page placeholder treatment; section headings, anchors, factual descriptions and limitations remain. No authentic media is removed.
+- Removed the thermal project's redundant closing note, which repeated the status/limitations paragraph and the already visible setup/app evidence. The technical qualifications and ongoing status remain unchanged.
+- Protected the thermal-first opening, full-frame imagery, Manrope, neutral headlines, charcoal/cream palette, orange actions, editorial project rows, About/Contact composition and existing motion. No homepage, CSS, JavaScript, dependency or route changes were made.
+- Rendered desktop/mobile and both-theme review completed. The four revised pages passed overflow checks at 390px and 1440px; image loading, representative navigation, theme changes, carousel pointer/keyboard controls and video-player lifecycle were checked. JavaScript syntax, CSS parsing and seven-page structural/local-reference checks passed. See the full assessment for evidence and unverified coverage.
+- **Proposal only:** prioritize authentic RAG citation examples and spatial prediction/uncertainty figures, then documented classification results. These assets and technical details have not been supplied or fabricated. The proposal does not change the approved project selection or authorize publication.
+
+The reference's supporting knowledge-base files are absent, so no unverified CR/TS citations are used. Phase 09 stops here; Phase 10 and deployment have not begun.
+
+## 23. Button hover refinement, 20 November 2026
+
+- User requested an orange highlight expanding radially from the pointer to the button borders.
+- The user replaced the radial highlight on "In this project" section links with the existing arrow-style hover movement: 2px right and 2px up using the 160ms feedback timing and easing. Links retain their neutral color and native focus outline; keyboard and reduced-motion input suppress movement. This supersedes the earlier extension of the orange fill to these links.
+- Apply to primary actions, theme and carousel controls, and video playback/chapter buttons. Use signal orange on neutral controls and the existing lighter orange `#FF936E` on already-orange actions.
+- Keep the pointer entry point fixed during each hover; size the circle to reach the farthest corner, clipped within the control. Reuse the 160ms feedback timing and existing easing, reversing on exit.
+- Keyboard focus gets an immediate filled state and visible outline. Reduced motion removes the transition; hover is limited to fine pointers with hover support. Existing layout, links and control behavior remain intact.
+
+## 24. Homepage desktop carousel rotation, 20 November 2026
+
+- User approved automatic rotation every 10 seconds for the homepage robotic inspection / thermal analysis gallery only. This supersedes manual-only behavior for this gallery on desktop; project-page galleries remain manual.
+- Desktop uses the existing layout boundary: at least 851px wide, with a fine pointer and hover support. Mobile, touch-primary devices and reduced-motion users retain manual navigation.
+- Hover or focus anywhere within the carousel pauses rotation. After leaving, wait a fresh 10 seconds before advancing. Pointer interaction, any carousel click (including slides and controls), or navigation/activation keys disable automatic rotation for the remainder of the page visit.
+- Pause when offscreen or when the tab is hidden; resume with a fresh interval when eligible. Preserve the existing crossfade and manual controls. Automatic changes do not trigger live-region announcements; manual changes retain polite announcements.
 
 ## Maintenance rule
 
